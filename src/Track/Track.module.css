@@ -1,0 +1,35 @@
+.container {
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    align-items: center;
+}
+
+.h3 {
+    padding: 5px;
+    margin: 0;
+}
+
+.p {
+    margin: 2px 0 4px 0;
+    color: hsl(270, 100%, 85%);
+}
+
+.span {
+    padding: 0 5px 0 5px;
+}
+
+.button {
+    background-color: hsl(270, 97%, 26%);
+    font-size: 1.25em;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 50%;
+}
+
+.button:hover {
+    background-color: hsl(238, 100%, 18%);
+}

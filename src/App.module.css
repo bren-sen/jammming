@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=National+Park:wght@200..800&display=swap');
+
+.App {
+  font-family: 'National Park';
+  background: #3F5EFB;
+  background: linear-gradient(252deg,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+  padding-bottom: 3em;
+}
+
+.body {
+  font-family: 'National Park';
+  margin-top: 3em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2em;
+}
+
+

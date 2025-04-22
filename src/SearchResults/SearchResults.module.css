@@ -1,0 +1,11 @@
+.container {
+    width: 400px;
+    background-color: hsla(145, 100%, 0%, 0.7);
+    color: white;
+    border-radius: 5px;
+}
+
+.sectionTitle {
+    text-align: center;
+    padding-top: 0.5em;
+}

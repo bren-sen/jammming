@@ -1,0 +1,25 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.searchField {
+    width: 180px;
+    padding: 5px;
+    margin: 1.5em 0;
+    border: none;
+    border-radius: 3px;
+}
+
+.button {
+    background-color: hsl(270, 100%, 26%);
+    color: white;
+    padding: 20px;
+    border: none;
+    border-radius: 30px/50%;
+}
+
+.button:hover {
+    background-color: hsl(238, 100%, 18%);
+}
