@@ -1,19 +1,10 @@
 import React from 'react';
 import styles from './SearchBar.module.css';
 
-function SearchBar({userInput, handleUserInput}) {
-
-    function handleChange(e) {
-        handleUserInput(e.target.value);
-    };
-
-    function handleSubmit(e) {
-        e.preventDefault();
-        alert(`You searched for ${userInput}`)
-    };
+function SearchBar({userInput, handleChange, handleSearchSubmit}) {
 
     return (
-        <form onSubmit={handleSubmit} className={styles.form} >
+        <form onSubmit={handleSearchSubmit} className={styles.form} >
             <input 
                 type='text' 
                 id='searchInput' 
@@ -28,7 +19,5 @@ function SearchBar({userInput, handleUserInput}) {
         </form>
     );
 };
-
-//removed label <label htmlFor='searchInput'>Search:</label>
 
 export default SearchBar;

@@ -2,19 +2,7 @@ import React from 'react';
 import Track from '../Track/Track';
 import styles from './Playlist.module.css';
 
-function Playlist({playlistData, setPlaylistData, searchData, setSearchData, playlistName, setPlaylistName}) {
-
-    function handleNameChange(e) {
-        setPlaylistName(e.target.value)
-    };
-
-    function handleSave() {
-        if (playlistName === '') {
-            alert(`Please give a name to your playlist`);
-            return;
-        };
-        alert(`The playlist ${playlistName} is being saved to your spotify account`)
-    };
+function Playlist({playlistData, setPlaylistData, searchData, setSearchData, playlistName, handlePlaylistNameChange, handlePlaylistSave}) {
 
     if (playlistData.length > 0) {
         return (
@@ -26,21 +14,21 @@ function Playlist({playlistData, setPlaylistData, searchData, setSearchData, pla
                     name='playlistName' 
                     placeholder='Name Your Playlist'
                     value={playlistName} 
-                    onChange={handleNameChange} 
+                    onChange={handlePlaylistNameChange} 
                     className={styles.playlistName}
                 />
                 <ul className={styles.ul} >
                     {playlistData.map((song) => {
                         return <Track 
-                                song={song} 
-                                setPlaylistData={setPlaylistData} 
-                                playlistData={playlistData} 
-                                setSearchData={setSearchData} 
-                                searchData={searchData} 
+                                    song={song} 
+                                    setPlaylistData={setPlaylistData} 
+                                    playlistData={playlistData} 
+                                    setSearchData={setSearchData} 
+                                    searchData={searchData} 
                                />;
                     })}
                 </ul>
-                <button onClick={handleSave} className={styles.button} >Save to Spotify</button>
+                <button onClick={handlePlaylistSave} className={styles.button} >Save to Spotify</button>
             </div>
         )
     };

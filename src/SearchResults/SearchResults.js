@@ -2,7 +2,7 @@ import React from 'react';
 import TrackList from '../TrackList/TrackList';
 import styles from './SearchResults.module.css';
 
-function SearchResults({searchData, playlistData, setSearchData, setPlaylistData}) {
+function SearchResults({searchData, playlistData, setSearchData, setPlaylistData, setPlaylistUris, playlisturis}) {
     if (searchData) {
         return (
             <div className={styles.container} >
@@ -12,14 +12,16 @@ function SearchResults({searchData, playlistData, setSearchData, setPlaylistData
                     searchData={searchData} 
                     setPlaylistData={setPlaylistData} 
                     playlistData={playlistData} 
+                    setPlaylistUris={setPlaylistUris}
+                    playlisturis={playlisturis}
                 />
             </div>
         );
     };
     return (
-        <div>
-            <h2>Your Search Results</h2>
-            <p>No results available yet...</p>
+        <div className={styles.container} >
+            <h2 className={styles.sectionTitle} >Your Search Results</h2>
+            <p className={styles.p} >No results available yet...</p>
         </div>
     );
 };
