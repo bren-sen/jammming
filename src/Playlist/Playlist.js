@@ -37,7 +37,7 @@ function Playlist({playlistData, setPlaylistData, searchData, setSearchData, pla
     return (
         <div className={styles.container} >
             <h2 className={styles.sectionTitle} >Your Playlist</h2>
-            <p className={styles.p} >There are no song in your playlist yet. Start by adding songs from your search results</p>
+            <p className={styles.p} >There are no songs in your playlist yet. Start by adding songs from your search results</p>
         </div>
     );
 };

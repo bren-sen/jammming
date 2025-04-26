@@ -8,7 +8,8 @@ function SearchBar({userInput, handleChange, handleSearchSubmit}) {
             <input 
                 type='text' 
                 id='searchInput' 
-                name='searchInput' 
+                name='searchInput'
+                pattern='[A-Za-z0-9 ]+' 
                 value={userInput} 
                 onChange={handleChange}
                 className={styles.searchField} />

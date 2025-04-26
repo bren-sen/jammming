@@ -14,11 +14,13 @@ function App() {
 
   const [playlistData, setPlaylistData] = useState([]);
 
-  const [playlistName, setPlaylistName] =useState("");
+  const [playlistName, setPlaylistName] = useState("");
 
-  const [playlistUris, setPlaylistUris] =useState([]);
+  const [playlistUris, setPlaylistUris] = useState([]);
 
-  //NB in all fetch request add refreshToken if response 401
+
+  //NB not using refreshToken() yet so when token expire -> response 401 to fetch request...
+
   //Get request to spotify API with the user search string (userInput)
   const getTracks = async () => {
 
@@ -65,18 +67,43 @@ function App() {
         throw new Error(`Response status: ${response.status}`);
       };
       const jsonResponse = await response.json();
-      alert(`${jsonResponse.name} created`);
+      
+      return jsonResponse;
+
     } catch (error) {
       console.error(error.message);
     }
   };
 
   //POST request to add the songs to the newly created playlist
-  /*
   const addTracks = async () => {
-    console.log('not implemented yet');
+
+    const activePlaylist = await createPlaylist();
+
+    const playlistId = activePlaylist.id;
+    
+    const addSongsUrl = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
+
+    const options = {
+      method: 'POST',
+      headers: { 
+        'Authorization': 'Bearer ' + currentToken.access_token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ 'uris': playlistUris})
+    };
+
+    try {
+      const response = await fetch(addSongsUrl, options);
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      };
+      alert(`Your playlist was saved to Spotify`);
+    } catch (error) {
+      console.error(error.message);
+    }
   };
-  */
+
 
   //handle the search text input fill and submit
   function handleUserInput(input) {
@@ -103,11 +130,13 @@ function handlePlaylistSave() {
       alert(`Please give a name to your playlist`);
       return;
   };
-  createPlaylist();
+
+  addTracks();
   setPlaylistData([]);
   setPlaylistName('');
 };
 
+// HTML
 if (currentToken.access_token) {
   return (
     <div className={styles.App} >

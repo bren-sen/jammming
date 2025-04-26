@@ -6,8 +6,8 @@
  * https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow
  */
 
-const clientId = '******************************'; // your clientId
-const redirectUrl = 'http://127.0.0.1:3000/';        // your redirect URL 
+const clientId = '*****************************'; // your clientId
+const redirectUrl = 'http://127.0.0.1:3000/'; // your redirect URL 
 
 const authorizationEndpoint = "https://accounts.spotify.com/authorize";
 const tokenEndpoint = "https://accounts.spotify.com/api/token";
