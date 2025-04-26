@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# My JAMMMING app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is part of the Codecademy React course.
+It uses the **authorization code flow with PKCE** recommended by Spotify since the *implicit grant* id deprecated.
 
-## Available Scripts
+## Getting started
 
-In the project directory, you can run:
+### 1 In the project directory, run:
 
-### `npm start`
+### `HOST=127.0.0.1 npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://127.0.0.1:3000](http://127.0.0.1:3000) to view it in your browser.
+This is important since `npm start` alone would open [http://localhost:3000] and this is no longer an acceptable uri:
+> localhost is not allowed as redirect URI.
+>[https://developer.spotify.com/documentation/web-api/concepts/redirect_uri]
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+### 2 Create an app in the Spotify for developers dashboard
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Go to your Spotify for developers dashboard and click: create app
+You'll have to give your app a name and give at least 1 redirect URI
 
-### `npm run build`
+#### - Fill in your redirect URI
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Use [http://127.0.0.1:3000/] this needs to match exactly the url at line 9 of *SpotifyAuth.js*
+`const redirectUrl = 'http://127.0.0.1:3000/';  // your redirect URL `
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Your app should now show on your dashboard, click on it and:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### - Get your client ID
 
-### `npm run eject`
+You'll find it in the first tab *Basic Information*
+You'll need to paste your client ID at line 9 of *SpotifyAuth.js*
+`const clientId = '******************************'; // your clientId`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### - Manage Users
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+While the app is in development mode, you can have up to 25 users, **but** you need to register each user beforehand.
+Head to the *User Management* tab and add your name and email address associated with your spotify account.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 3 Ready to go
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+In the Jammming app, click on Login and you should be redirected to Spotify to grant authorisation to access your user info and create playlist.
+You can add/remove what authorisation is granted by modifying line 14 of *SpotifyAuth.js*
+It's currently set as follow:
+`const scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';`
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
