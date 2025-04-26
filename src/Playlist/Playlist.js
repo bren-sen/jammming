@@ -2,7 +2,7 @@ import React from 'react';
 import Track from '../Track/Track';
 import styles from './Playlist.module.css';
 
-function Playlist({playlistData, setPlaylistData, searchData, setSearchData, playlistName, handlePlaylistNameChange, handlePlaylistSave}) {
+function Playlist({playlistData, setPlaylistData, searchData, setSearchData, playlistName, handlePlaylistNameChange, handlePlaylistSave, playlistUris, setPlaylistUris}) {
 
     if (playlistData.length > 0) {
         return (
@@ -25,6 +25,8 @@ function Playlist({playlistData, setPlaylistData, searchData, setSearchData, pla
                                     playlistData={playlistData} 
                                     setSearchData={setSearchData} 
                                     searchData={searchData} 
+                                    setPlaylistUris={setPlaylistUris}
+                                    playlistUris={playlistUris}
                                />;
                     })}
                 </ul>

@@ -5,6 +5,7 @@
   background: #3F5EFB;
   background: linear-gradient(252deg,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
   padding-bottom: 3em;
+  min-height: 92vh;
 }
 
 .body {
@@ -17,4 +18,16 @@
   gap: 2em;
 }
 
+.button {
+  background-color: hsl(270, 100%, 26%);
+  color: white;
+  padding: 20px;
+  border: none;
+  border-radius: 30px/50%;
+  display: block;
+  margin: 3em auto 2em auto;
+}
 
+.button:hover {
+  background-color: hsl(238, 100%, 18%);
+}

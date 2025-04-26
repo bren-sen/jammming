@@ -2,7 +2,7 @@ import React from 'react';
 import TrackList from '../TrackList/TrackList';
 import styles from './SearchResults.module.css';
 
-function SearchResults({searchData, playlistData, setSearchData, setPlaylistData, setPlaylistUris, playlisturis}) {
+function SearchResults({searchData, playlistData, setSearchData, setPlaylistData, setPlaylistUris, playlistUris}) {
     if (searchData) {
         return (
             <div className={styles.container} >
@@ -13,7 +13,7 @@ function SearchResults({searchData, playlistData, setSearchData, setPlaylistData
                     setPlaylistData={setPlaylistData} 
                     playlistData={playlistData} 
                     setPlaylistUris={setPlaylistUris}
-                    playlisturis={playlisturis}
+                    playlistUris={playlistUris}
                 />
             </div>
         );

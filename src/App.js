@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './App.module.css';
 import Header from './Header/Header.js';
 import SearchResults from './SearchResults/SearchResults.js';
@@ -18,7 +18,8 @@ function App() {
 
   const [playlistUris, setPlaylistUris] =useState([]);
 
-//Get request to spotify API with the userInput
+  //NB in all fetch request add refreshToken if response 401
+  //Get request to spotify API with the user search string (userInput)
   const getTracks = async () => {
 
     const searchUrl = `https://api.spotify.com/v1/search?q=${userInput}&type=track&limit=20&offset=0`;
@@ -34,13 +35,48 @@ function App() {
         throw new Error(`Response status: ${response.status}`);
       };
       const jsonResponse = await response.json();
-      console.log(jsonResponse);
       setSearchData(jsonResponse.tracks.items);
     } catch (error) {
       console.error(error.message);
     }
   };
 
+  //Post request to create a new playlist on the user' spotify account
+  const createPlaylist = async () => {
+
+    const userData = await getUserData();
+
+    const userId = userData.id;
+
+    const addPlaylistUrl = `https://api.spotify.com/v1/users/${userId}/playlists`
+
+    const options = {
+      method: 'POST',
+      headers: { 
+        'Authorization': 'Bearer ' + currentToken.access_token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ 'name': playlistName})
+    };
+
+    try {
+      const response = await fetch(addPlaylistUrl, options);
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      };
+      const jsonResponse = await response.json();
+      alert(`${jsonResponse.name} created`);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  //POST request to add the songs to the newly created playlist
+  /*
+  const addTracks = async () => {
+    console.log('not implemented yet');
+  };
+  */
 
   //handle the search text input fill and submit
   function handleUserInput(input) {
@@ -67,12 +103,9 @@ function handlePlaylistSave() {
       alert(`Please give a name to your playlist`);
       return;
   };
-  alert(`The playlist ${playlistName} is being saved to your spotify account`);
-  console.log(playlistUris);
-  /* this needs to be replaced
-  setSearchData((prev) => [...prev, playlistData]);
+  createPlaylist();
   setPlaylistData([]);
-  setPlaylistName(''); */
+  setPlaylistName('');
 };
 
 if (currentToken.access_token) {
@@ -83,6 +116,7 @@ if (currentToken.access_token) {
         handleUserInput={handleUserInput} 
         handleChange={handleChange}
         handleSearchSubmit={handleSearchSubmit}
+        logoutClick={logoutClick}
       />
       <div className={styles.body}>
         <SearchResults 
@@ -102,8 +136,11 @@ if (currentToken.access_token) {
           playlistName={playlistName} 
           handlePlaylistNameChange={handlePlaylistNameChange}
           handlePlaylistSave={handlePlaylistSave}
+          setPlaylistUris={setPlaylistUris}
+          playlistUris={playlistUris}
         />
       </div>
+      <button className={styles.button} onClick={logoutClick}>Log out</button>
     </div>
   );
 };
@@ -123,7 +160,6 @@ if (!currentToken.access_token) {
         refreshToken={refreshToken}
         getUserData={getUserData}
         loginWithSpotifyClick={loginWithSpotifyClick}
-        logoutClick={logoutClick}
       />
     </div>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import Track from "../Track/Track";
 import styles from './Tracklist.module.css';
 
-function TrackList({setSearchData, searchData, setPlaylistData, playlistData, playlisturis, setPlaylistUris}) {
+function TrackList({setSearchData, searchData, setPlaylistData, playlistData, playlistUris, setPlaylistUris}) {
     
     return (
         <div>
@@ -15,7 +15,7 @@ function TrackList({setSearchData, searchData, setPlaylistData, playlistData, pl
                             searchData={searchData} 
                             setPlaylistData={setPlaylistData} 
                             playlistData={playlistData} 
-                            playlisturis={playlisturis}
+                            playlistUris={playlistUris}
                             setPlaylistUris={setPlaylistUris}
                         />
                     );

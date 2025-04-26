@@ -1,18 +1,17 @@
 
-/**
- * This performs
- * the Authorization Code with PKCE oAuth2 flow to authenticate against the Spotify User Account.
+/*
+ * This gets the Authorization Code with PKCE oAuth2 flow to authenticate against the Spotify User Account.
  *
  * For more information:
  * https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow
  */
 
-const clientId = 'idGoesHere'; // your clientId
-const redirectUrl = 'http://127.0.0.1:3000/';        // your redirect URL - must be localhost URL and HTTPS
+const clientId = '******************************'; // your clientId
+const redirectUrl = 'http://127.0.0.1:3000/';        // your redirect URL 
 
 const authorizationEndpoint = "https://accounts.spotify.com/authorize";
 const tokenEndpoint = "https://accounts.spotify.com/api/token";
-const scope = 'user-read-private user-read-email';
+const scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
 
 // Data structure that manages the current active token, caching it in localStorage
 const currentToken = {

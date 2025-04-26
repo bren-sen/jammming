@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './Track.module.css';
 
-function Track({song, setPlaylistData, playlistData, setPlaylistUris, playlisturis}) {
+function Track({song, setPlaylistData, playlistData, setPlaylistUris, playlistUris}) {
 
     //when a track is added or removed from the playlist, both playlistData and playlistUris are updated
     //playlistUri is the data used for the POST request to spotify when saving the playlist
@@ -14,7 +14,7 @@ function Track({song, setPlaylistData, playlistData, setPlaylistUris, playlistur
 
     function handleRemoveClick() {
         setPlaylistData(playlistData.filter((track) => track.id !== song.id));
-        setPlaylistUris(playlisturis.filter((track) => track.id !== song.id))
+        setPlaylistUris(playlistUris.filter((track) => track.id !== song.id))
     };
 
     let button = <button onClick={handleAddClick} className={styles.button} >+</button>;
